@@ -1,1 +1,21 @@
+node('master') {
+    
+    stage ('checkout code'){
+    
+    git 'https://github.com/RakeshYadvanshi/BloggerAspnetCore2_2.git'
+}
 
+stage('restore package and build') {
+    //bat label: '', script: 'MSBuild.exe -t:restore BloggerAPI.sln'
+
+    bat label: '', script: "dotnet build"
+    
+}
+
+stage('Run UnitTest') {
+    bat label: '', script: 'dotnet test'
+    
+}
+
+
+}
